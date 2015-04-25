@@ -12,13 +12,12 @@ Bowling.prototype.pinsKnocked = function(pins) {
 
 Bowling.prototype.ballOne = function() {
   var pinsDown = this.pinsKnocked(this.startPins);
+  console.log(pinsDown);
   if (pinsDown === 10){
-    this.pinsLeft = 0;
-  } else {
-    this.pinsLeft = this.startPins - pinsDown;
+    return this.pinsLeft = 0;
   };
-  console.log(this.pinsLeft);
-  return this.pinsLeft;
+  return this.ballTwo();
+  // return this.pinsLeft;
 };
 
 Bowling.prototype.ballTwo = function() {
@@ -35,8 +34,9 @@ Bowling.prototype.ballTwo = function() {
 
 Bowling.prototype.gameFrame = function() {
   if (this.ballOne() === 0){
-    this.message = "Strike, frame is over";
-  } else {
+    return this.message = "Strike, frame is over";
+  };
+  if (this.ballOne() =! 0) {
     if (this.ballTwo() === 0){
       this.message = "Spare, frame is over";
     } else {
