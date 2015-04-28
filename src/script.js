@@ -21,3 +21,11 @@ $(document).ready(function(){
   onReady();
 });
 
+///////
+
+$(document).ready(function() {
+  game = new Bowling;
+  $("#ball1").on("click", function(e) {
+    $('#message').text(game.rollBall());
+  });
+});

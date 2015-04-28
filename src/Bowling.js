@@ -20,35 +20,40 @@ Bowling.prototype.ballTwo = function() {
   return this.pinsLeft = this.pinsLeft - pinsDown;
 };
 
+// 'rolling loop'
+
 Bowling.prototype.firstPart = function(){
-  if (this.ballOne() === 0) {
-    this.result = "Strike, frame is over";
+  this.ballOne();
+  if (this.pinsLeft === 0) {
+    this.result = "strike";
   } else {
-    this.result = "Frame continues, go for next ball";
+    this.result = "continue";
   };
   return this.result;
 };
 
 Bowling.prototype.secondPart = function(){
-  if (this.firstPart === "Frame continues, go for next ball") {
+  if (this.result === "continue") {
     this.ballTwo();
   };
 };
 
 Bowling.prototype.thirdPart = function() {
   if (this.secondPart() === 0){
-    this.message = "Spare, frame is over";
+    this.message = "spare";
   } else {
-    this.message = "Open Frame, frame is over";
+    this.message = "open";
   };
   return this.message;
 };
 
+// END 'rolling loop'
+
 Bowling.prototype.frameScore = function() {
-  if (this.firstPart() === "Strike, frame is over") {
+  if (this.firstPart() === "strike") {
     return this.score = 10;
   } else {
-    if (this.thirdPart() === "Spare, frame is over") {
+    if (this.thirdPart() === "spare") {
       this.score = 10;
     } else {
       this.score = this.startPins - this.secondPart();
